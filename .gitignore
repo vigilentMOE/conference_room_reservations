@@ -1,0 +1,81 @@
+# Node.js dependencies
+node_modules/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Environment files
+.env
+.env.*.local
+
+# Build outputs
+dist/
+build/
+out/
+
+# Cache
+.cache/
+.vite/
+.next/
+.svelte-kit/
+.nuxt/
+coverage/
+
+# Editor and IDE files
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# System files
+.DS_Store
+Thumbs.db
+*.bak
+*.tmp
+
+# Lint and formatting
+.eslintcache
+.prettier-cache
+
+# Tests
+/coverage/
+jest-cache/
+jest.config.js
+
+# Temporary files
+*.tmp
+*.swp
+*.swo
+*.sqlite
+
+# Docker and Infra
+docker-compose.override.yml
+.docker/
+*.tar
+
+# Backend specific
+*.sqlite3
+pgdata/
+*.log
+*.pid
+
+# Database
+database/migrations/*.log
+database/migrations/*.lock
+database/migrations/tmp/
+database/seed/*.log
+
+# Infra
+/infra/terraform/.terraform/
+*.tfstate
+*.tfstate.*
+
+# Misc
+!README.md
