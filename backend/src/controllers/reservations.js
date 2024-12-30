@@ -1,14 +1,16 @@
 import { ConferenceRoom } from "../models/dbObjectModels.js";
 
+
 /**
- * Get all conference rooms
+ * Controller to get all conference rooms.
+ *
  * @async
- * @function getAllConferenceRooms
- * @param {object} req - Express request object
- * @param {object} res - Express response object
- * @returns {Promise<void>} Sends JSON response with all conference rooms
+ * @function getAllConferenceRoomsController
+ * @param {Object} req - Express request object.
+ * @param {Object} res - Express response object.
+ * @returns {Promise<void>} - Returns a JSON response with the list of conference rooms or an error message.
  */
-export async function getAllConferenceRooms(req, res) {
+export async function getAllConferenceRoomsController(req, res) {
   try {
     const conferenceRooms = await ConferenceRoom.findAll();
     return res.status(200).json({
@@ -23,7 +25,7 @@ export async function getAllConferenceRooms(req, res) {
   }
 }
 
-export function validateConferenceRoom(req, res, next) {
+export function validateConferenceRoomController(req, res, next) {
   const { name, capacity, location } = req.body;
   if (!name || !capacity || !location) {
     return res.status(400).json({

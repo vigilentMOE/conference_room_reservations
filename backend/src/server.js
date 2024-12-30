@@ -1,23 +1,27 @@
 import express from "express";
 import dotenv from "dotenv";
 import { devRequestLogger } from "./utils/logging.js";
-import sequelize  from "./models/dbObjectModels.js";
-// import { sequelize } from "./config/db.js";
+import sequelize from "./models/dbObjectModels.js";
 
 // routes
 import reservationRoutes from "./routes/reservationRoutes.js";
-
-// Application entry point
+import utilityRoutes from "./routes/utilityRoutes.js";
 
 // Load environment variables from .env file
 dotenv.config();
 
+// Initialize Express application
 const app = express();
+
+// Set the port from environment variable or default to 3001
 const PORT = process.env.PORT || 3001;
 
-// Development-specific logging
+// Middleware
+
+// Middleware to parse JSON request body
+app.use(express.json());
+// Development-specific logging middleware
 if (process.env.NODE_ENV === "development") {
-  // console.log(`Current environment: ${process.env.NODE_ENV}`);
   console.log("Development mode: Detailed logging enabled");
   app.use(devRequestLogger);
 }
@@ -48,23 +52,8 @@ async function startServer() {
   }
 }
 
-/**
- * Middleware to parse JSON request body
- */
-app.use(express.json());
-
-
-
-/**
- * Basic route: Hello World
- * @route GET /
- * @returns {string} - Returns a greeting message
- */
-app.get("/", (req, res) => {
-  res.send("Hello World from the Resource Reservation backend!");
-});
-
-// Mount the reservations route at /reservations
+// Mount Routes
 app.use("/reservations", reservationRoutes);
+app.use("/utility", utilityRoutes);
 
 startServer();

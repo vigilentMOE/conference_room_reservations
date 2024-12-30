@@ -1,17 +1,19 @@
 import express from "express";
-const router = express.Router();
+import { createConferenceRoomService } from "../services/reservations.js";
 import {
-  createConferenceRoom,
-  getAllConferenceRooms,
-} from "../services/reservations.js";
-import { validateConferenceRoom } from "../controllers/reservations.js";
+  getAllConferenceRoomsController,
+  validateConferenceRoomController,
+} from "../controllers/reservations.js";
+
+const router = express.Router();
 
 // Route to get all conference rooms
-router.get("/rooms", getAllConferenceRooms);
+router.get("/rooms", getAllConferenceRoomsController);
 
-router.post("/rooms", validateConferenceRoom, async (req, res) => {
+// Route to post a new conference 
+router.post("/rooms", validateConferenceRoomController, async (req, res) => {
   try {
-    const newRoom = await createConferenceRoom(req.body);
+    const newRoom = await createConferenceRoomService(req.body);
     return res.status(201).json({
       success: true,
       data: newRoom,

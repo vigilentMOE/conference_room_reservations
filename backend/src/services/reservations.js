@@ -7,7 +7,7 @@ import { ConferenceRoom }  from "../models/dbObjectModels.js";
  * @returns {Promise<Array<object>>} List of all ConferenceRooms
  * @throws {Error} If fetching fails
  */
-export async function getAllConferenceRooms() {
+export async function getAllConferenceRoomsService() {
   return await ConferenceRoom.findAll();
 }
 
@@ -19,7 +19,7 @@ export async function getAllConferenceRooms() {
  * @returns {Promise<object>} Newly created ConferenceRoom
  * @throws {Error} If creation fails
  */
-export async function createConferenceRoom(roomData) {
+export async function createConferenceRoomService(roomData) {
   return await ConferenceRoom.create({
     name: roomData.name,
     capacity: roomData.capacity,
