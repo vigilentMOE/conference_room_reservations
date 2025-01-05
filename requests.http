@@ -1,0 +1,30 @@
+
+### Local - Get all conference rooms
+GET {{local}}/reservations/rooms
+Content-Type: application/json
+
+### Local - Create a new conference room
+POST {{local.baseUrl}}/rooms
+Content-Type: application/json
+
+{
+    "name": "Conference Room A",
+    "capacity": 10,
+    "features": ["Projector", "Whiteboard"],
+    "location": "First Floor"
+}
+
+### Remote - Get all conference rooms
+GET {{remote_http}}/reservations/rooms
+Content-Type: application/json
+
+### Remote - Create a new conference room
+POST {{remote_http}}/reservations/rooms
+Content-Type: application/json
+
+{
+    "name": "Conference Room B",
+    "capacity": 20,
+    "features": ["Teleconferencing", "Coffee Machine"],
+    "location": "Second Floor"
+}

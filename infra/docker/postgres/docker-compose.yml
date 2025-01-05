@@ -3,6 +3,8 @@ version: '3.9'
 # remember that PV may need to be deleted after certain config changes
 services:
   postgres:
+    profiles:
+      - global
     env_file:
       - ./.env
     # rebuild container if YAML is edited
@@ -14,7 +16,7 @@ services:
         - action: rebuild
           path: ./docker-compose.yml
     image: postgres:16
-    container_name: reservation_postgres
+    container_name: postgres_reservation
     restart: always  
     # .env in same directory
     environment:
@@ -26,6 +28,8 @@ services:
     volumes:
       - db_data:/var/lib/postgresql/data 
   pgadmin:
+    profiles:
+      - global
     build:
       context: .
       dockerfile: Dockerfile.pgadmin
@@ -34,7 +38,7 @@ services:
         - action: rebuild
           path: ./docker-compose.yml
     image: dpage/pgadmin4:8.14.0
-    container_name: pgadmin
+    container_name: pgadmin_reservation
     restart: always
     environment:
       PGADMIN_DEFAULT_EMAIL: ${PG_ADMIN_EMAIL}
@@ -45,18 +49,43 @@ services:
       driver: "none"
     depends_on:
       - postgres
-  nginx:
+  nginx-dev-http:
+    profiles:
+      - dev
+    env_file:
+      - ./.env
     build:
       context: ./
       dockerfile: Dockerfile.nginx
-    container_name: reservation_nginx
+    container_name: nginx_reservation_dev
     image: nginx:alpine # alpine for performance
     depends_on:
       - postgres
     ports:
       - "80:80"
     volumes:
-      - ./nginx/conf.d/default.conf:/etc/nginx/conf.d/default.conf
+      - ./nginx/conf.d/default-dev.conf:/etc/nginx/conf.d/default.conf
+    extra_hosts: 
+      - "host.docker.internal:host-gateway" # necessary for this to work on Linux
+  # environment-specific service
+  nginx-prod-https:
+    profiles:
+      - prod
+    env_file:
+      - ./.env
+    build:
+      context: ./
+      dockerfile: Dockerfile.nginx
+    container_name: nginx_reservation_prod
+    image: nginx:alpine # alpine for performance
+    depends_on:
+      - postgres
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/conf.d/default-prod.conf:/etc/nginx/conf.d/default.conf
+      - ${SSL_CERT_PATH}:/etc/nginx/ssl/cert.pem
+      - ${SSL_KEY_PATH}:/etc/nginx/ssl/key.key
     extra_hosts: 
       - "host.docker.internal:host-gateway" # necessary for this to work on Linux
 
