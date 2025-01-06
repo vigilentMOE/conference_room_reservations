@@ -1,5 +1,8 @@
 import express from "express";
 import dotenv from "dotenv";
+import path from "path";
+import { fileURLToPath } from "url";
+
 import { devRequestLogger } from "./utils/logging.js";
 import sequelize from "./models/dbObjectModels.js";
 
@@ -9,6 +12,9 @@ import utilityRoutes from "./routes/utilityRoutes.js";
 
 // Load environment variables from .env file
 dotenv.config();
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // Initialize Express application
 const app = express();
@@ -55,5 +61,8 @@ async function startServer() {
 // Mount Routes
 app.use("/reservations", reservationRoutes);
 app.use("/utility", utilityRoutes);
+
+// Frontend setup
+app.use(express.static(path.join(__dirname, "../../frontend/dist")));
 
 startServer();
