@@ -1,0 +1,19 @@
+
+
+
+
+GET https://reservations.vigilentmoe.com/reservations/rooms HTTP/1.1
+content-type: application/json
+
+###
+
+POST https://reservations.vigilentmoe.com/reservations/rooms HTTP/1.1 
+content-type: application/json
+
+{
+    "name": "Business Theater",
+    "capacity": 20,
+    "features": ["Video Conferencing", "Speaker System", "Podium"],
+    "location": "Second Floor",
+    "isAvailable": false
+}
