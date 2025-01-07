@@ -6,7 +6,8 @@
   "main": "server/index.js",
   "scripts": {
     "start": "node server/index.js",
-    "dev": "concurrently \"npm:server\" \"npm:client\"",
+    "dev": "concurrently \"npm run frontend:watch\" \"npm run server\"",
+    "frontend:watch": "cd frontend && npm run watch:build",
     "server": "nodemon",
     "client": "webpack serve --config webpack.config.js --mode development",
     "build": "webpack --config webpack.config.js --mode production",
