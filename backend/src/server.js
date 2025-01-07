@@ -58,11 +58,11 @@ async function startServer() {
   }
 }
 
+// Frontend setup
+app.use(express.static(path.join(__dirname, "../../frontend/dist")));
+
 // Mount Routes
 app.use("/reservations", reservationRoutes);
 app.use("/utility", utilityRoutes);
-
-// Frontend setup
-app.use(express.static(path.join(__dirname, "../../frontend/dist")));
 
 startServer();

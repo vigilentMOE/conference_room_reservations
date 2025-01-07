@@ -15,6 +15,21 @@ export default [
       ecmaVersion: 2021, // Enables ES2021 syntax features
       sourceType: "module", // Treats files as ES modules
       parser: babelParser, // Uses Babel to parse modern JavaScript
+      parserOptions: {
+        requireConfigFile: false, // Do not require a Babel configuration file
+        babelOptions: {
+          presets: [
+            "@babel/preset-env", // Use the preset-env for compiling modern JavaScript
+            [
+              "@babel/preset-react", // Use the preset-react for compiling JSX and React code
+              {
+                runtime: "automatic", // Enable the new JSX transform in React 17+
+                importSource: "preact", // Use Preact instead of React
+              },
+            ],
+          ],
+        },
+      },
       globals: {
         ...globals.browser, // Adds browser globals (window, document, etc.)
         ...globals.node, // Adds Node.js globals (process, require, etc.)

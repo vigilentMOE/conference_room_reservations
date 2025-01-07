@@ -10,7 +10,7 @@ const router = express.Router();
 // Route to get all conference rooms
 router.get("/rooms", getAllConferenceRoomsController);
 
-// Route to post a new conference 
+// Route to post a new conference
 router.post("/rooms", validateConferenceRoomController, async (req, res) => {
   try {
     const newRoom = await createConferenceRoomService(req.body);

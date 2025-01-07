@@ -1,4 +1,4 @@
-import { ConferenceRoom }  from "../models/dbObjectModels.js";
+import { ConferenceRoom } from "../models/dbObjectModels.js";
 
 /**
  * Fetches all ConferenceRooms from the database

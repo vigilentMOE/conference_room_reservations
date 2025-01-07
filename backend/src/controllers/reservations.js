@@ -1,6 +1,5 @@
 import { ConferenceRoom } from "../models/dbObjectModels.js";
 
-
 /**
  * Controller to get all conference rooms.
  *
