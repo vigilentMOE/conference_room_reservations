@@ -5,7 +5,7 @@ import "./app.css";
 
 /**
  * Main application component that demonstrates basic Vite and Preact functionality.
- * Includes a counter implementation and links to documentation
+ * Includes a counter implementation and links to documentation s
  * 
  * @component
  * @returns {JSX.Element} A fragment 
