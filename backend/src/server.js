@@ -58,10 +58,18 @@ async function startServer() {
   }
 }
 
-// Frontend setup
+/**
+ * Serve static files from the frontend's build directory.
+ * When express.static() middleware is used:
+ * 1. Any request to the root path '/' automatically looks for an index.html in the specified directory
+ * 2. The frontend build process creates dist/index.html which imports main.jsx
+ * 3. Express serves this index.html when clients hit the root route '/'
+ * 4. Once index.html loads in the browser, it loads the bundled JavaScript (main.jsx)
+ * 5. All other static assets (JS, CSS, images) are also served from this directory
+ */
 app.use(express.static(path.join(__dirname, "../../frontend/dist")));
 
-// Mount Routes
+// Mount Routes for API
 app.use("/reservations", reservationRoutes);
 app.use("/utility", utilityRoutes);
 
