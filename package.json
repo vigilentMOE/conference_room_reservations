@@ -5,10 +5,10 @@
   "description": "Express + Preact Project for Resource Reservation",
   "main": "server/index.js",
   "scripts": {
-    "start": "node server/index.js",
-    "dev": "concurrently \"npm run frontend:watch\" \"npm run server\"",
+    "start": "node server/index.js | tee server.log",
+    "dev": "concurrently \"npm run frontend:watch | tee frontend.log\" \"npm run server | tee server.log\"",
     "frontend:watch": "cd frontend && npm run watch:build",
-    "server": "nodemon",
+    "server": "nodemon | tee nodemon.log",
     "client": "webpack serve --config webpack.config.js --mode development",
     "build": "webpack --config webpack.config.js --mode production",
     "lint": "eslint \"**/*.{js,jsx}\" --max-warnings=0",
