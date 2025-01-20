@@ -15,8 +15,10 @@ export function App() {
   return (
     <>
       <NavigationToolbar onSelectPage={setPage} />
-      {page === "vitePreview" && <VitePreviewPage />}
-      {page === "otherPage" && <div>Other Page</div>}
+      <div className="main-content">
+        {page === "vitePreview" && <VitePreviewPage />}
+        {page === "otherPage" && <div>Other Page</div>}
+      </div>
     </>
   );
 }
