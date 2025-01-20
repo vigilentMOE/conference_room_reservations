@@ -1,5 +1,7 @@
 import "./app.css";
 import { VitePreviewPage } from "./pages/vitePreviewPage";
+import { useState } from "preact/hooks";
+import NavigationToolbar from "./components/global/navbar";
 
 /**
  * Main application component that serves as the application container.
@@ -8,5 +10,13 @@ import { VitePreviewPage } from "./pages/vitePreviewPage";
  * @returns {JSX.Element} The VitePreviewPage component
  */
 export function App() {
-  return <VitePreviewPage />;
+  const [page, setPage] = useState("vitePreview");
+
+  return (
+    <>
+      <NavigationToolbar onSelectPage={setPage} />
+      {page === "vitePreview" && <VitePreviewPage />}
+      {page === "otherPage" && <div>Other Page</div>}
+    </>
+  );
 }

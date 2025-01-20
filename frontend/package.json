@@ -10,7 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "preact": "^10.25.3"
+    "preact": "^10.25.3",
+    "preact-material-components": "^1.6.1"
   },
   "devDependencies": {
     "@babel/core": "^7.26.0",
