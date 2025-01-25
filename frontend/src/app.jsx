@@ -1,4 +1,4 @@
-import "./app.css";
+import "./styles/app.css";
 import { VitePreviewPage } from "./pages/vitePreviewPage";
 import { useState } from "preact/hooks";
 import NavigationToolbar from "./components/global/navbar";
