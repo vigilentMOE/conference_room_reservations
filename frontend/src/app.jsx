@@ -1,5 +1,6 @@
 import "./styles/app.css";
 import { VitePreviewPage } from "./pages/vitePreviewPage";
+import { ListConferenceRooms } from "./pages/listConferenceRooms";
 import { useState } from "preact/hooks";
 import NavigationToolbar from "./components/global/navbar";
 import { Fragment } from "preact/jsx-runtime";
@@ -12,24 +13,25 @@ import { Fragment } from "preact/jsx-runtime";
  */
 export function App() {
   const [page, setPage] = useState("vitePreviewHome");
-
+  console.log(page);
   // Main component props
   const mainNavConfig = {
+    onSelectPage: setPage,
     title: "Resource Reservations",
     showMenu: true,
     navigationItems: [
-      { id: "vitePreviewHome", icon: "home", label: "Dashboard" },
-      { id: "reservations", icon: "event", label: "Reservations" },
+      { id: "vitePreviewHome", icon: "home", label: "Vite Test Page" },
+      { id: "listConferenceRooms", icon: "event", label: "Reservations" },
     ],
   };
 
   // @ts-ignore
   return (
     <>
-      <NavigationToolbar {...mainNavConfig} onSelectPage={setPage} />
+      <NavigationToolbar {...mainNavConfig} />
       <div className="main-content">
         {page === "vitePreviewHome" && <VitePreviewPage />}
-        {page === "listConferenceRooms" && <div>Other Page</div>}
+        {page === "listConferenceRooms" && <ListConferenceRooms />}
       </div>
     </>
   );

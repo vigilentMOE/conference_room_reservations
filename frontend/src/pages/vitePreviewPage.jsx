@@ -1,13 +1,16 @@
+import { Fragment } from "preact";
 import { useState } from "preact/hooks";
+// @ts-ignore
 import preactLogo from "../assets/preact.svg";
-import viteLogo from "/vite.svg";
+// @ts-ignore
+import viteLogo from "../assets/vite.svg";
 import "../styles/app.css";
 
 export function VitePreviewPage() {
   const [count, setCount] = useState(0);
-
+  console.log("Showing vite preview page");
   return (
-    <>
+    <Fragment>
       <div>
         <a href="https://vite.dev" target="_blank" rel="noreferrer">
           <img src={viteLogo} className="logo" alt="Vite logo" />
@@ -50,6 +53,6 @@ export function VitePreviewPage() {
       <p className="read-the-docs">
         Click on the Vite and Preact logos to learn more
       </p>
-    </>
+    </Fragment>
   );
 }
